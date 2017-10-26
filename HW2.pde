@@ -1,3 +1,11 @@
+float speedY = 0;
+float gravity = 0.1;
+float x = 150;
+float y = 50;
+float w = 50;
+float h = 50;
+boolean button = false;
+
 float R, G, B, SkySpeed;
 float SunOri, SunY, MoonOri, MoonY, StarX, StarY, StarSize;
 float a, b, i, j, k, wave;
@@ -140,9 +148,22 @@ void draw() {
   quad(416,156,496,172,472,223,416,156);
   quad(496,172,558,248,494,254,472,223);
   
+  fill(255, 0, 0);
+  ellipse(x, y, h, w);
+  if (button) {
+    y=y+speedY;
+    speedY = speedY+gravity;
+    if (y+25>height) {
+      speedY=speedY*(-0.95);
+    }
+  } else {
+    ellipse(x, y, h, w);
+  }
+  
 }
 
 void mousePressed() {
+  button = !button;
   stroke(255);
   point(mouseX, mouseY);
   println("X = " +mouseX);
